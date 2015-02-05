@@ -66,7 +66,6 @@ function simpleupload() {
 
     // Some tweaking because
     // file_save_upload() expects the $_FILES to be populated like this:
-    //$_FILES['files']['name']['upload'] = $_FILES['upload']['name'];
     $_FILES['files']['name']['upload'] = $file_name;
     $_FILES['files']['type']['upload'] = $_FILES['upload']['type'];
     $_FILES['files']['tmp_name']['upload'] = $_FILES['upload']['tmp_name'];
@@ -77,6 +76,7 @@ function simpleupload() {
 
     // TODO currently assumes public files.
     $uploaddir = variable_get('simpleuploads_uploaddir', '');
+    file_prepare_directory($uploaddir, FILE_CREATE_DIRECTORY);
     $upload_uri = 'public://' . $uploaddir;
     if ($file = file_save_upload('upload', array('file_validate_is_image' => array()), $upload_uri, FILE_EXISTS_RENAME)) {
       $file->status = 1;
@@ -118,4 +118,15 @@ function simpleupload() {
   // Required: Function number as indicated by CKEditor.
   $funcnum = $_GET['CKEditorFuncNum'];
   echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcnum, '$url', '$message')</script>";
+}
+
+
+/**
+ * Implements hook_page_build().
+ */
+function simpleuploads_page_build(&$page) {
+
+  if (arg(0) == 'node' && (arg(1) == 'add' || arg(2) == 'edit') && variable_get('simpleuploads_responsive', 0)) {
+    drupal_add_js(drupal_get_path('module', 'simpleuploads') . '/js/simpleuploads.js');
+  }
 }

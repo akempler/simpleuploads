@@ -38,5 +38,12 @@ function simpleuploads_settings_form() {
     '#description' => t('An optional subdirectory within the /files directory to upload files to (make sure to create it). To upload to the root /files directory leave it blank.'),
   );
 
+  $form['simpleuploads_responsive'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Responsive images'),
+    '#default_value' => variable_get('simpleuploads_responsive', 0),
+    '#description' => t('If checked, the height and width will be removed from the inline images and a img-responsive class will be added to inline img tags.'),
+  );
+
   return system_settings_form($form);
 }

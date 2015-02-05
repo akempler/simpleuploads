@@ -1,7 +1,6 @@
 /**
  * @file
- * JavaScript to place the content palette on the screen 
- * and synchronize settings between the palette and the node form.
+ * Remove width and height from inline images added by simpleuploads plugin.
  */
 
 

@@ -4,6 +4,5 @@ core = 7.x
 configure = admin/config/content/simpleuploads
 
 package = xeego
-scripts[] = js/simpleuploads.js
 
-version = "7.x-1.0"
+version = "7.x-1.1"
