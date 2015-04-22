@@ -1,0 +1,5 @@
+name = CKEditor SimpleUploads
+description = Provide integration with the ImagePaste/SimpleUploads using either CKEditor or WYSIWYG/CKEditor plugin. You have to enable and configure at least one WYSIWYG module for this to work.
+core = 7.x
+configure = admin/config/content/simpleuploads
+dependencies[] = libraries

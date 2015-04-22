@@ -1,8 +1,0 @@
-name = SimpleUploads
-description = Provide integration with the simpleuploads ckeditor plugin.
-core = 7.x
-configure = admin/config/content/simpleuploads
-
-package = xeego
-
-version = "7.x-1.1"
