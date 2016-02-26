@@ -95,11 +95,11 @@ function simpleupload() {
           $success = image_style_create_derivative(
               $styledef,
               $upload_uri . $file_name,
-              image_style_path($imagestyle, $upload_uri . $file_name)
+              image_style_path($imagestyle, $upload_uri . DIRECTORY_SEPARATOR . $file_name)
           );
         }
         // Used by the simpleuploads plugin.
-        $url = image_style_url($imagestyle, $upload_uri . $file_name);
+        $url = image_style_url($imagestyle, $upload_uri . DIRECTORY_SEPARATOR . $file_name);
       }
       else {
         $import_path = file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . $uploaddir;
