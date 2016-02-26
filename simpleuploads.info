@@ -3,6 +3,6 @@ description = Provide integration with the simpleuploads ckeditor plugin.
 core = 7.x
 configure = admin/config/content/simpleuploads
 
-package = xeego
+package = Content Tools
 
 version = "7.x-1.1"

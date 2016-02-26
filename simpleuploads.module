@@ -75,9 +75,11 @@ function simpleupload() {
     $_FILES['files']['upload'] = $_FILES['upload'];
 
     // TODO currently assumes public files.
-    $uploaddir = variable_get('simpleuploads_uploaddir', '');
+    $uploaddir = variable_get('simpleuploads_uploaddir', '') . '/';
+    $uploaddir = str_ireplace('//', '/', $path);
+    $upload_uri = file_default_scheme() . '://' . DIRECTORY_SEPARATOR . $uploaddir;
     file_prepare_directory($uploaddir, FILE_CREATE_DIRECTORY);
-    $upload_uri = 'public://' . $uploaddir;
+    //$upload_uri = 'public://' . $uploaddir . '/';
     if ($file = file_save_upload('upload', array('file_validate_is_image' => array()), $upload_uri, FILE_EXISTS_RENAME)) {
       $file->status = 1;
       // Update the file status into the database
@@ -110,7 +112,7 @@ function simpleupload() {
 
     }
     else {
-      $message = 'Image upload failed for: ' . check_plain(file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . $uploaddir . $file_name);
+      $message = 'Image upload failed for: ' . check_plain(file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . $uploaddir . DIRECTORY_SEPARATOR . $file_name);
       drupal_set_message('File upload was unsuccessful', 'error');
     }
   }
