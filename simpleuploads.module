@@ -91,15 +91,18 @@ function simpleupload() {
       if(count($errors) < 1 && $imagestyle != 'none') {
 
         $styledef = image_style_load($imagestyle);
+        $src = $upload_uri . $file_name;
+        $dst = image_style_path($imagestyle, $src);
         if (count($styledef)) {
           $success = image_style_create_derivative(
               $styledef,
-              $upload_uri . $file_name,
-              image_style_path($imagestyle, $upload_uri . DIRECTORY_SEPARATOR . $file_name)
+              $src,
+              $dst
           );
         }
         // Used by the simpleuploads plugin.
-        $url = image_style_url($imagestyle, $upload_uri . DIRECTORY_SEPARATOR . $file_name);
+        //$url = image_style_url($imagestyle, $upload_uri . DIRECTORY_SEPARATOR . $file_name);
+        $url = file_create_url($dst);
       }
       else {
         $import_path = file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . $uploaddir;
