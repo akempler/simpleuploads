@@ -76,7 +76,7 @@ function simpleupload() {
 
     // TODO currently assumes public files.
     $uploaddir = variable_get('simpleuploads_uploaddir', '') . '/';
-    $uploaddir = str_ireplace('//', '/', $path);
+    $uploaddir = str_ireplace('//', '/', $uploaddir);
     $upload_uri = file_default_scheme() . '://' . DIRECTORY_SEPARATOR . $uploaddir;
     file_prepare_directory($uploaddir, FILE_CREATE_DIRECTORY);
     //$upload_uri = 'public://' . $uploaddir . '/';
